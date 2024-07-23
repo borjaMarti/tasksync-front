@@ -40,11 +40,12 @@ const sortedTasks = computed(() => {
       <div class="flex justify-center">
         <IconLink to="/tasker" icon="radix-icons:plus" text="New Task" />
       </div>
-      <ul class="flex flex-col gap-6">
+      <ul v-if="sortedTasks[0]" class="flex flex-col gap-6">
         <li v-for="task in sortedTasks" :key="task.id">
           <TaskCard :id="task.id" :priority="task.priority" :title="task.title" />
         </li>
       </ul>
+      <p v-else>All finished!</p>
     </div>
   </main>
 </template>
