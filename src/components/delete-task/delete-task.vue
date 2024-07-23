@@ -11,15 +11,15 @@ const props = defineProps<{
 }>();
 
 async function deleteTask() {
-  await fetch(`http://localhost:3000/tasks/${props.id}`, {
+  await fetch(`${import.meta.env.VITE_SERVER_URL}/tasks/${props.id}`, {
     method: 'DELETE',
   });
 
-  toast('Task deleted', {
+  toast(`Deleted task: "${props.title}"`, {
     action: {
       label: 'Undo',
       onClick: async () => {
-        await fetch('http://localhost:3000/tasks', {
+        await fetch(`${import.meta.env.VITE_SERVER_URL}/tasks`, {
           method: 'POST',
           headers: {
             'Content-type': 'application/json',

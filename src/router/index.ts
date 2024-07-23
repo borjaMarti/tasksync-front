@@ -15,8 +15,13 @@ const router = createRouter({
       component: () => import('../views/dashboard-view.vue'),
     },
     {
-      path: '/tasker/:id',
+      path: '/tasker',
       name: 'tasker',
+      component: () => import('../views/tasker-view.vue'),
+    },
+    {
+      path: '/tasker/:id',
+      name: 'tasker-id',
       component: () => import('../views/tasker-view.vue'),
     },
   ],
