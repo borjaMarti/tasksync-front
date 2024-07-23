@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import { useQueryClient } from '@tanstack/vue-query';
-import { RouterLink, RouterView } from 'vue-router';
+import { RouterView } from 'vue-router';
 import socket from './socket';
+import { ThemeButton } from '@/components/theme-button';
+import { RouterLink } from 'vue-router';
+import { buttonVariants } from '@/components/ui/button';
+import { Toaster } from '@/components/ui/sonner';
 
+const linkClass = buttonVariants({ variant: 'link' });
 const queryClient = useQueryClient();
 socket.connect();
 socket.on('tasksUpdated', () => {
@@ -11,80 +16,43 @@ socket.on('tasksUpdated', () => {
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+  <header class="header">
+    <div class="header__container">
+      <RouterLink to="/" :class="linkClass">
+        <h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">TaskSync</h1>
+      </RouterLink>
+      <ThemeButton />
     </div>
   </header>
-
+  <Toaster />
   <RouterView />
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
+.header {
+  display: flex;
+  align-items: center;
+  z-index: 10;
   width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+  position: fixed;
+  top: 0px;
+  height: 7.5rem;
+  backdrop-filter: blur(0.5rem);
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+@media (max-width: 768px) {
+  .header {
+    height: 4rem;
   }
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 57rem;
+  padding: 0 1rem 0 1rem;
 }
 </style>
