@@ -5,9 +5,9 @@ import router from './router';
 import { VueQueryPlugin, type VueQueryPluginOptions } from '@tanstack/vue-query';
 
 const app = createApp(App);
-// Borja: Since we are using websockets to update our cache, we set staleTime to Infinity.
 const vueQueryPluginOptions: VueQueryPluginOptions = {
   queryClientConfig: {
+    // Borja: Since we are using websockets to update our cache, we don't need to refetch.
     defaultOptions: { queries: { staleTime: Infinity } },
   },
 };

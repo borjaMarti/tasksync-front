@@ -10,6 +10,7 @@ import { Toaster } from '@/components/ui/sonner';
 const linkClass = buttonVariants({ variant: 'link' });
 const queryClient = useQueryClient();
 socket.connect();
+// Borja: When recieving a tasksUpdated event from the server, invalidate queries triggering a refetch.
 socket.on('tasksUpdated', () => {
   queryClient.invalidateQueries({ queryKey: ['tasks'] });
 });

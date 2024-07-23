@@ -12,16 +12,13 @@ const router = createRouter({
     {
       path: '/dashboard',
       name: 'dashboard',
+      // Borja: Lazy loading the route.
       component: () => import('../views/dashboard-view.vue'),
     },
     {
       path: '/tasker',
       name: 'tasker',
-      component: () => import('../views/tasker-view.vue'),
-    },
-    {
-      path: '/tasker/:id',
-      name: 'tasker-id',
+      // Borja: Lazy loading the route.
       component: () => import('../views/tasker-view.vue'),
     },
   ],

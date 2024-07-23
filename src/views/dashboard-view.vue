@@ -4,20 +4,20 @@ import { TaskCard } from '@/components/task-card';
 import { computed } from 'vue';
 import { LoadingSpiner } from '@/components/loading-spinner';
 import { IconLink } from '@/components/icon-link';
+import { buttonVariants } from '@/components/ui/button';
+import { Icon } from '@iconify/vue';
 
-const { isPending, data: tasks } = useGetTasksQuery();
-
-const priorityOrder: Record<string, number> = {
+const linkClass = buttonVariants();
+const { isPending, data: tasks, isError } = useGetTasksQuery();
+const priorityOrder = {
   important: 1,
   backlog: 2,
   completed: 3,
 };
-
 const sortedTasks = computed(() => {
   if (!tasks.value) {
     return [];
   }
-
   return [...tasks.value].sort((a, b) => {
     return priorityOrder[a.priority] - priorityOrder[b.priority];
   });
@@ -26,7 +26,16 @@ const sortedTasks = computed(() => {
 
 <template>
   <main class="pt-40 flex justify-center mb-10">
-    <LoadingSpiner v-if="isPending" />
+    <div v-if="isError" class="flex flex-col justify-center gap-8">
+      <p>Something is failing in the server...</p>
+      <div class="flex justify-center">
+        <a href="mailto:borjamarti@outlook.com?subject=TaskSync Fail" :class="linkClass"
+          ><Icon icon="radix-icons:envelope-closed" class="h-[1.2rem] w-[1.2rem] mr-2" />Tell me
+          about it?</a
+        >
+      </div>
+    </div>
+    <LoadingSpiner v-else-if="isPending" />
     <div v-else-if="sortedTasks" class="flex flex-col justify-center gap-8">
       <div class="flex justify-center">
         <IconLink to="/tasker" icon="radix-icons:plus" text="New Task" />
