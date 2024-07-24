@@ -8,7 +8,7 @@ TaskSync allows your team to keep track of tasks with real-time updates, notifyi
 - Form validation with [VeeValidate](https://vee-validate.logaretm.com/v4/) and [Zod](https://zod.dev/).
 - Styling with [tailwindcss](https://tailwindcss.com/) and [shadcn-vue](https://www.shadcn-vue.com/).
 
-[TaskSync (Back-End)](https://github.com/borjamarti/tasksync-back).
+[TaskSync (Back-End)](https://github.com/borjamarti/tasksync-back)
 
 ## Project Setup
 
