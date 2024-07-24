@@ -12,6 +12,8 @@ TaskSync allows your team to keep track of tasks with real-time updates, notifyi
 
 ## Project Setup
 
+Server URL by default is `http://localhost:3000`. If you have the running server on another port, modify the `VITE_SERVER_URL` variable in `.env`.
+
 ```sh
 npm install
 ```
