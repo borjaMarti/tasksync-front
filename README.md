@@ -12,7 +12,7 @@ TaskSync allows your team to keep track of tasks with real-time updates, notifyi
 
 ## Project Setup
 
-The back-end server URL by default is `http://localhost:3000`. If you have the server running on another port, modify the `VITE_SERVER_URL` variable in `.env`.
+The back-end server URL by default is `http://localhost:3005`. If you have the server running on another port, modify the `VITE_SERVER_URL` variable in `.env`.
 
 ```sh
 npm install
