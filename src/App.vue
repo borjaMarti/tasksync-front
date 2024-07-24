@@ -25,7 +25,7 @@ socket.on('tasksUpdated', () => {
       <ThemeButton />
     </div>
   </header>
-  <Toaster />
+  <Toaster class="pointer-events-auto" />
   <RouterView />
 </template>
 
